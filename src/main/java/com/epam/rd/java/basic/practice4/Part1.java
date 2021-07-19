@@ -48,13 +48,13 @@ public class Part1 {
 //                result = result.replace(m.group(), newWord);
 //            }
 //-----------------------------------------------------------
-        String REGEX = "[a-zA-Z0-9][\\wа-яёА-ЯЁ]+\\b\\w{1,3}\\b";
+        String REGEX = "[a-zA-Z0-9][\\wа-яёА-ЯЁ]\\b\\w{1,3}\\b";
         String REPLACE = " ";
         Pattern pattern = Pattern.compile(REGEX);
         Matcher matcher = pattern.matcher(input);
         StringBuffer buffer = new StringBuffer(input);
         while (matcher.find()) {
-            matcher.appendReplacement(buffer, System.lineSeparator());
+            matcher.appendReplacement(buffer, REPLACE);
         }
         matcher.appendTail(buffer);
         //-----------------------------------------
