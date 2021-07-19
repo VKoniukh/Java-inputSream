@@ -10,6 +10,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Part1 {
+    public static final String ONE_WORD = "[a-zA-Z0-9][\\wа-яёА-ЯЁ]+/ig{4,}";
+
     public static void main(String[] args) {
         String outputText = getInput("part1.txt");
         outputText = sb1(outputText);
@@ -37,15 +39,25 @@ public class Part1 {
     }
 //[\wa-яА-Я]{4,}
     public static String sb1(String input) {
-        String REGEX = "[a-zA-Z0-9][\\wа-яёА-ЯЁ]+/ig{4,}";
-        String REPLACE = " ";
-        Pattern pattern = Pattern.compile(REGEX);
-        Matcher matcher = pattern.matcher(input);
-        StringBuffer buffer = new StringBuffer();
-        while (matcher.find()) {
-            matcher.appendReplacement(buffer, REPLACE);
-        }
-        matcher.appendTail(buffer);
+        String result = input;
+        Pattern p = Pattern.compile(ONE_WORD);
+        Matcher m = p.matcher(input);
+            while (m.find()) {
+                String word = m.group();
+                String newWord = word.substring(2);
+                result = result.replace(m.group(), newWord);
+            }
+
+//        String REGEX = "[a-zA-Z0-9][\\wа-яёА-ЯЁ]+/ig{4,}";
+//        String REPLACE = " ";
+//        Pattern pattern = Pattern.compile(REGEX);
+//        Matcher matcher = pattern.matcher(input);
+//        StringBuffer buffer = new StringBuffer();
+//        while (matcher.find()) {
+//            matcher.appendReplacement(buffer, System.lineSeparator());
+//        }
+//        matcher.appendTail(buffer);
+        //-----------------------------------------
 //            Pattern pattern = Pattern.compile(regex, Pattern.MULTILINE);
 //            Matcher matcher = pattern.matcher(input);
 //            StringBuilder sb = new StringBuilder();
@@ -57,6 +69,6 @@ public class Part1 {
 //                }
 //            }
 //            return sb.toString();
-        return buffer.toString().trim();
+        return result.trim();
     }
 }
