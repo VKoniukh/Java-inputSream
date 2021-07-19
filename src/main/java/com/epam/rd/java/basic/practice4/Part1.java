@@ -35,9 +35,9 @@ public class Part1 {
         }
         return sb.toString();
     }
-
+//[\wa-яА-Я]{4,}
     public static String sb1(String input) {
-        String REGEX = "[\\wa-яА-Я]{4,}";
+        String REGEX = "[a-zA-Z0-9][\\wа-яёА-ЯЁ]+/ig{4,}";
         String REPLACE = " ";
         Pattern pattern = Pattern.compile(REGEX);
         Matcher matcher = pattern.matcher(input);
@@ -46,7 +46,6 @@ public class Part1 {
             matcher.appendReplacement(buffer, REPLACE);
         }
         matcher.appendTail(buffer);
-        System.out.println(buffer.toString());
 //            Pattern pattern = Pattern.compile(regex, Pattern.MULTILINE);
 //            Matcher matcher = pattern.matcher(input);
 //            StringBuilder sb = new StringBuilder();
