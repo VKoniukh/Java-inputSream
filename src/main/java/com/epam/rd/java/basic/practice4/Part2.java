@@ -1,8 +1,6 @@
 package com.epam.rd.java.basic.practice4;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -11,55 +9,74 @@ public class Part2 {
 
     static Logger logger;
 
-    public static void main(String[] args) {
-//        String outputText = getInput1("part2.txt");
-//        outputText = ChangeInput(outputText);
-//        System.out.println(outputText);
+    public static void main(String[] args) throws IOException {
+        CreateFile();
+        String outputText = getInput("part2.txt");
+        Integer [] n = parsInt();
+        Integer [] m1 = bubbleSort(n);
+        String z = m1.toString();
+        String finaltext = reWrite(z);
+
+
+        System.out.println("input ==> " + outputText);
+        System.out.println("output ==> " + finaltext);
+       // outputText = CreateFile(outputText);
+        //System.out.println(outputText);
     }
 
-    public static void CrNum() {
-        // The target file
-        File out = new File("C:\\Users\\1\\IdeaProjects\\dipnxtcf-task4\\src\\main\\resources\\part2.txt");
-        FileWriter fw = null;
-        int n = 10;
-        // Try block: Most stream operations may throw IO exception
-        try {
-            // Create file writer object
-            fw = new FileWriter(out);
-            // Wrap the writer with buffered streams
-            BufferedWriter writer = new BufferedWriter(fw);
+    public static String reWrite(String o) throws IOException {
+        File myFoo = new File("C/Users/1/IdeaProjects/dipnxtcf-task4/part2.txt");
+        FileWriter fooWriter = new FileWriter(myFoo, false); // true to append
+        // false to overwrite.
+        String n = getInput("part2.txt");
+        fooWriter.write(o);
+        fooWriter.close();
+        return n;
+    }
+
+    public static void CreateFile() {
+        try (Writer writer = new BufferedWriter(new OutputStreamWriter(
+                new FileOutputStream("part2.txt"), "cp1251"))) {
+            int n = 10;
             int line;
             Random random = new Random();
             while (n > 0) {
                 // Randomize an integer and write it to the output file
                 line = random.nextInt(50);
-                writer.write(line + "\n");
+                writer.write(line + " ");
                 n--;
             }
-            // Close the stream
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
-            System.exit(0);
         }
     }
 
-    public static String getInput1(String filePath) {
+    public static Integer[] parsInt() {
+        String out = getInput("part2.txt");
+        char[] ch = out.toCharArray();
+        Integer[] intarray = new Integer[ch.length];
+        int i=0;
+        for(i = 0; i < ch.length; i++){
+            intarray[i]=Integer.parseInt(String.valueOf(ch))  ; //Exception in this line
+        }
+        return intarray;
+    }
+
+
+
+//        File out = new File("C/Users/1/IdeaProjects/dipnxtcf-task4/src/part2.txt");
+
+    public static String getInput(String filePath) {
         StringBuilder sb = new StringBuilder();
         try {
-            Scanner scanner = new Scanner(new File("C:\\Users\\1\\IdeaProjects\\dipnxtcf-task4\\src\\main\\resources\\part2.txt"), "cp1251");
+            Scanner scanner = new Scanner(new File(filePath), "cp1251");
             while (scanner.hasNextLine()) {
                 sb
                         .append(scanner.nextLine())
                         .append(System.lineSeparator());
-                Integer[] myInts = new Integer[50];
-                int mySpot = 0;
-                while (scanner.hasNext()) {
-                    myInts[mySpot] = Integer.valueOf(scanner.next());
-                    mySpot++;
-                }
-                scanner.close();
             }
+            scanner.close();
         } catch (FileNotFoundException ex) {
             System.out.println(ex);
             logger.log(Level.SEVERE, "File does not exist");
@@ -67,42 +84,16 @@ public class Part2 {
         return sb.toString();
     }
 
-    public static void Sort() throws IOException {
-//        Scanner fin = new Scanner(new File("C:\\Users\\1\\IdeaProjects\\dipnxtcf-task4\\src\\main\\resources\\part2.txt"), "cp1251");
-//        ;
-//        int[] nums = new int[100];
-//        int cnt = 0;
-//        while (fin.hasNextInt()) {
-//            nums[cnt] = fin.nextInt();
-//            cnt++;
-        FileReader fin = new FileReader("part2.txt");
-        int c;
-        int number = 0;
-        boolean ncheck = false;
-        ArrayList<Integer> n = new ArrayList<Integer>();
-        while ((c = fin.read()) != -1) {
-            if (c >= 48 && c < 58) { //проверка соответствуют ли символы юникода цифрам
-                number = number * 10 + Character.getNumericValue((char) c);
-                ncheck = true;
-            } else if (ncheck == true) {
-                n.add(number);
-                number = 0;
-                ncheck = false;
-            }
-
-        }
-        if (ncheck == true) { // не нашел решения получше,решает проблему если последним символом в файле является цифра,то предыдущая проверка не происходит.
-            n.add(number);
-            number = 0;
-            ncheck = false;
-        }
-        Collections.sort(n);
-
-        FileWriter fw = new FileWriter(new File("part2_sorted.txt"));
-        for (int i : n) {
-            fw.write(Integer.toString(i) + (char) 13 + (char) 10);//"(char)13" и "(char)10" символы юникода управления строкой и кареткой
-            fw.flush();
-        }
+    public static Integer[] bubbleSort(Integer[] arr) {
+        int n = arr.length;
+        for (int i = 0; i < n - 1; i++)
+            for (int j = 0; j < n - i - 1; j++)
+                if (arr[j] > arr[j + 1]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+        return arr;
     }
 }
 
