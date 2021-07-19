@@ -36,18 +36,29 @@ public class Part1 {
         return sb.toString();
     }
 
-        public static String sb1(String input) {
-            String regex = "([А-я\\w]{4,})|(\\n)|([А-я\\w]{1,4})|(\\W)";
-            Pattern pattern = Pattern.compile(regex, Pattern.MULTILINE);
-            Matcher matcher = pattern.matcher(input);
-            StringBuilder sb = new StringBuilder();
-            while (matcher.find()) {
-                if (matcher.group().length() > -4) {
-                    sb.append(matcher.group().substring(2));
-                } else {
-                    sb.append(matcher.group());
-                }
-            }
-            return sb.toString();
+    public static String sb1(String input) {
+        //  String regex = "([А-я\\w]{4,})|(\\n)|([А-я\\w]{1,4})|(\\W)";
+        String REGEX = "([А-я\\w]{4,})|(\\n)|([А-я\\w]{1,4})|(\\W)";
+        String REPLACE = " ";
+        Pattern pattern = Pattern.compile(REGEX);
+        Matcher matcher = pattern.matcher(input);
+        StringBuffer buffer = new StringBuffer();
+        while (matcher.find()) {
+            matcher.appendReplacement(buffer, REPLACE);
         }
+        matcher.appendTail(buffer);
+        System.out.println(buffer.toString());
+//            Pattern pattern = Pattern.compile(regex, Pattern.MULTILINE);
+//            Matcher matcher = pattern.matcher(input);
+//            StringBuilder sb = new StringBuilder();
+//            while (matcher.find()) {
+//                if (matcher.group().length() > -4) {
+//                    sb.append(matcher.group().substring(2));
+//                } else {
+//                    sb.append(matcher.group());
+//                }
+//            }
+//            return sb.toString();
+        return buffer.toString().trim();
     }
+}
