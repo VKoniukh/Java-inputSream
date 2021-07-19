@@ -37,8 +37,7 @@ public class Part1 {
     }
 
     public static String sb1(String input) {
-        //  String regex = "([А-я\\w]{4,})|(\\n)|([А-я\\w]{1,4})|(\\W)";
-        String REGEX = "([А-я\\w]{4,})|(\\n)|([А-я\\w]{1,4})|(\\W)";
+        String REGEX = "[\\wa-яА-Я]{4,}";
         String REPLACE = " ";
         Pattern pattern = Pattern.compile(REGEX);
         Matcher matcher = pattern.matcher(input);
