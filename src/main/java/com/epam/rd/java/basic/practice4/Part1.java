@@ -27,7 +27,6 @@ public class Part1 {
                 sb
                         .append(scanner.nextLine())
                         .append(System.lineSeparator());
-
             }
             scanner.close();
         } catch (FileNotFoundException ex) {
@@ -36,7 +35,7 @@ public class Part1 {
         }
         return sb.toString();
     }
-//[\wa-яА-Я]{4,}
+
     public static String ChangeInput(String input) {
         String result = input;
         Pattern p = Pattern.compile(ONE_WORD, Pattern.MULTILINE);
@@ -47,28 +46,7 @@ public class Part1 {
                 String newWord = word.substring(2);
                 result = result.replace(m.group(), newWord);
             }
-//-----------------------------------------------------------
-//        String REGEX = "[a-zA-Z0-9][\\wа-яёА-ЯЁ]\\b\\w{1,3}\\b";
-//        String REPLACE = " ";
-//        Pattern pattern = Pattern.compile(REGEX);
-//        Matcher matcher = pattern.matcher(input);
-//        StringBuffer buffer = new StringBuffer(input);
-//        while (matcher.find()) {
-//            matcher.appendReplacement(buffer, REPLACE);
-//        }
-//        matcher.appendTail(buffer);
-        //-----------------------------------------
-//            Pattern pattern = Pattern.compile(regex, Pattern.MULTILINE);
-//            Matcher matcher = pattern.matcher(input);
-//            StringBuilder sb = new StringBuilder();
-//            while (matcher.find()) {
-//                if (matcher.group().length() > -4) {
-//                    sb.append(matcher.group().substring(2));
-//                } else {
-//                    sb.append(matcher.group());
-//                }
-//            }
-//            return sb.toString();
+
         return result.trim();
     }
 }
