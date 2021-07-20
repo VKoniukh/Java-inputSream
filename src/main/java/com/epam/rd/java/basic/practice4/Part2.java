@@ -9,15 +9,17 @@ public class Part2 {
 
     static Logger logger;
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         CreateFile();
         String outputText = getInput("part2.txt").trim();
         int toSort[] = strToArr(outputText);
-        // int[] bubble = Arrays.stream(outputText.split(" ")).mapToInt(Integer::parseInt).toArray();
         String result1 = bubbleSort(toSort);
-        String result2 = reWrite(result1);
-
-
+        String result2 = null;
+        try {
+            result2 = reWrite(result1);
+        } catch (IOException lol) {
+            System.err.println(lol.toString());
+        }
         System.out.println("input ==> " + outputText);
         System.out.println("output ==> " + result2);
     }
