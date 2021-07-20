@@ -12,7 +12,7 @@ public class Part2 {
     public static void main(String[] args) {
         CreateFile();
         String outputText = getInput("part2.txt").trim();
-        int toSort[] = strToArr(outputText);
+        int[] toSort = strToArr(outputText);
         String result1 = bubbleSort(toSort);
         String result2 = null;
         try {
@@ -20,8 +20,8 @@ public class Part2 {
         } catch (IOException lol) {
             System.err.println(lol.toString());
         }
-        System.out.println("input ==> " + outputText);
-        System.out.println("output ==> " + result2);
+        System.out.print("input ==> " + outputText + " ");
+        System.out.print("output ==> " + result2);
     }
 
     public static int[] strToArr(String input) {
@@ -37,7 +37,7 @@ public class Part2 {
 
 
     public static String reWrite(String o) throws IOException {
-        File myFoo = new File("part2.txt");
+        File myFoo = new File("part2_sorted.txt");
         FileWriter fooWriter = new FileWriter(myFoo); // true to append
         // false to overwrite.
         fooWriter.write(o);
