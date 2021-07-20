@@ -11,27 +11,36 @@ public class Part2 {
 
     public static void main(String[] args) throws IOException {
         CreateFile();
-        String outputText = getInput("part2.txt");
-        Integer [] n = parsInt();
-        Integer [] m1 = bubbleSort(n);
-        String z = m1.toString();
-        String finaltext = reWrite(z);
+        String outputText = getInput("part2.txt").trim();
+        int toSort[] = strToArr(outputText);
+        // int[] bubble = Arrays.stream(outputText.split(" ")).mapToInt(Integer::parseInt).toArray();
+        String result1 = bubbleSort(toSort);
+        String result2 = reWrite(result1);
 
 
         System.out.println("input ==> " + outputText);
-        System.out.println("output ==> " + finaltext);
-       // outputText = CreateFile(outputText);
-        //System.out.println(outputText);
+        System.out.println("output ==> " + result2);
     }
 
+    public static int[] strToArr(String input) {
+        String str = input.trim();
+        String[] strArr = str.split(" ");
+        int numArr[] = new int[strArr.length];
+        for (int i = 0; i < strArr.length; i++) {
+            numArr[i] = Integer.parseInt(strArr[i]);
+            // System.out.println(numArr[i]);
+        }
+        return numArr;
+    }
+
+
     public static String reWrite(String o) throws IOException {
-        File myFoo = new File("C/Users/1/IdeaProjects/dipnxtcf-task4/part2.txt");
-        FileWriter fooWriter = new FileWriter(myFoo, false); // true to append
+        File myFoo = new File("part2.txt");
+        FileWriter fooWriter = new FileWriter(myFoo); // true to append
         // false to overwrite.
-        String n = getInput("part2.txt");
         fooWriter.write(o);
         fooWriter.close();
-        return n;
+        return o;
     }
 
     public static void CreateFile() {
@@ -46,26 +55,22 @@ public class Part2 {
                 writer.write(line + " ");
                 n--;
             }
-            writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static Integer[] parsInt() {
-        String out = getInput("part2.txt");
-        char[] ch = out.toCharArray();
-        Integer[] intarray = new Integer[ch.length];
-        int i=0;
-        for(i = 0; i < ch.length; i++){
-            intarray[i]=Integer.parseInt(String.valueOf(ch))  ; //Exception in this line
-        }
-        return intarray;
-    }
-
-
-
-//        File out = new File("C/Users/1/IdeaProjects/dipnxtcf-task4/src/part2.txt");
+//    public static Integer[] parsInt(String o) {
+//        String out = o;
+//                //getInput("part2.txt");
+//        char[] ch = out.toCharArray();
+//        Integer[] intarray = new Integer[ch.length];
+//        int i=0;
+//        for(i = 0; i < ch.length; i++){
+//            intarray[i]=Integer.parseInt(String.valueOf(ch))  ; //Exception in this line
+//        }
+//        return intarray;
+//    }
 
     public static String getInput(String filePath) {
         StringBuilder sb = new StringBuilder();
@@ -84,17 +89,39 @@ public class Part2 {
         return sb.toString();
     }
 
-    public static Integer[] bubbleSort(Integer[] arr) {
+    public static String bubbleSort(int arr[]) {
+        //getInput("part2.txt");
+        //char[] ch = out.toCharArray();
+        //Integer[] arr = new Integer[input.length()];
+//        for (i = 0; i < arr.length;) {
+//            arr[i] = Integer.parseInt(input);
+//                    i++;
         int n = arr.length;
-        for (int i = 0; i < n - 1; i++)
-            for (int j = 0; j < n - i - 1; j++)
+        for (int o = 0; o < n - 1; o++)
+            for (int j = 0; j < n - o - 1; j++)
                 if (arr[j] > arr[j + 1]) {
                     int temp = arr[j];
                     arr[j] = arr[j + 1];
                     arr[j + 1] = temp;
                 }
-        return arr;
+
+        return toString(arr);
+
     }
+
+    public static String toString(int[] a) {
+
+        int iMax = a.length - 1;
+
+        StringBuilder b = new StringBuilder();
+        for (int i = 0; ; i++) {
+            b.append(a[i]);
+            if (i == iMax)
+                return b.toString();
+            b.append(" ");
+        }
+    }
+
 }
 
 
