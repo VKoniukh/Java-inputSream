@@ -20,8 +20,8 @@ public class Part2 {
         } catch (IOException lol) {
             System.err.println(lol.toString());
         }
-        System.out.print("input ==> " + outputText + " ");
-        System.out.print("output ==> " + result2);
+        System.out.print("input ==> " + outputText +System.lineSeparator());
+        System.out.print("output ==> " + result2 + System.lineSeparator());
     }
 
     public static int[] strToArr(String input) {
@@ -125,6 +125,7 @@ public class Part2 {
     }
 
 }
+
 
 
 //1.Создать клас который создает файл и заполняет файл "part2.txt" случайными целыми числами от 0 до 50 (всего 10 чисел)
