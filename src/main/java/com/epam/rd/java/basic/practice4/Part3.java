@@ -8,10 +8,11 @@ import java.util.regex.Pattern;
 
 public class Part3 {
 
-    public static final Scanner sc = new Scanner(System.in);
-    public static final String input = sc.toString();
+    public static final String input = getFileInput("part3.txt");
+
 
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
         while (sc.hasNextLine()) {
             switch (sc.nextLine()) {
                 case "String":
