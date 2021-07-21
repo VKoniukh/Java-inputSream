@@ -10,7 +10,6 @@ public class Part3 {
 
     public static final String input = getFileInput("part3.txt");
 
-    static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
         start("part3.txt");
     }
@@ -18,7 +17,9 @@ public class Part3 {
 
     public static void start(String filename) {
         label:
-        while (sc.hasNextLine()) {
+        while (true) {
+            Scanner sc = new Scanner(System.in);
+            if (sc.hasNextLine())
                 switch (sc.nextLine()) {
                     case "String":
                         System.out.println(getStringValues());
