@@ -10,16 +10,14 @@ public class Part3 {
 
     public static final String input = getFileInput("part3.txt");
 
+    static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
-        start("part3.txt");
+        start();
     }
 
 
-    public static void start(String filename) {
-        label:
-        while (true) {
-            Scanner sc = new Scanner(System.in);
-            if (sc.hasNextLine())
+    public static void start() {
+        while (sc.hasNextLine()) {
                 switch (sc.nextLine()) {
                     case "String":
                         System.out.println(getStringValues());
@@ -34,7 +32,7 @@ public class Part3 {
                         System.out.println(getDoubleValues());
                         break;
                     case "stop":
-                        break label;
+                        return;
                     default:
                         System.out.println("incorrect input");
                         break;
