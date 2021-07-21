@@ -8,36 +8,32 @@ import java.util.regex.Pattern;
 
 public class Part3 {
 
-    public static final String input = getFileInput("part3.txt");
+    public static final Scanner sc = new Scanner(System.in);
+    public static final String input = sc.toString();
 
-    static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
-        start();
+        while (sc.hasNextLine()) {
+            switch (sc.nextLine()) {
+                case "String":
+                    System.out.println(getStringValues());
+                    break;
+                case "char":
+                    System.out.println(getCharValues());
+                    break;
+                case "int":
+                    System.out.println(getIntValues());
+                    break;
+                case "double":
+                    System.out.println(getDoubleValues());
+                    break;
+                case "stop":
+                    return;
+                default:
+                    System.out.println("incorrect input");
+                    break;
+            }
     }
 
-
-    public static void start() {
-        while (sc.hasNextLine()) {
-                switch (sc.nextLine()) {
-                    case "String":
-                        System.out.println(getStringValues());
-                        break;
-                    case "char":
-                        System.out.println(getCharValues());
-                        break;
-                    case "int":
-                        System.out.println(getIntValues());
-                        break;
-                    case "double":
-                        System.out.println(getDoubleValues());
-                        break;
-                    case "stop":
-                        return;
-                    default:
-                        System.out.println("incorrect input");
-                        break;
-                }
-        }
     }
 
     public static String getStringValues() {
