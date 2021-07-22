@@ -72,7 +72,7 @@ public class Part3 {
 
     public static String getDoubleValues() {
         StringBuilder sb = new StringBuilder();
-        String regex = "\\b\\d+\\.\\d+\\b";
+        String regex = "[-+]?[0-9]{0,}\\\\.[0-9]{1,}";
         Pattern pattern = Pattern.compile(regex);
 
         Matcher matcher = pattern.matcher(input);
