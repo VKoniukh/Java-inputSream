@@ -12,6 +12,7 @@ public class Part3 {
 
     static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
+
         start("part3.txt");
     }
 
@@ -57,7 +58,7 @@ public class Part3 {
 
     public static String getCharValues() {
         StringBuilder sb = new StringBuilder();
-        String regex = "(?<=\\s|^).(?=\\s|$)";
+        String regex = "([\\p{L}]+)[^\\p{L}]+";
         Pattern pattern = Pattern.compile(regex);
 
         Matcher matcher = pattern.matcher(input);
@@ -72,7 +73,7 @@ public class Part3 {
 
     public static String getDoubleValues() {
         StringBuilder sb = new StringBuilder();
-        String regex = "[-+]?[0-9]{0,}\\\\.[0-9]{1,}";
+        String regex = "[-+]?[0-9]{0,}\\.[0-9]{1,}";
         Pattern pattern = Pattern.compile(regex);
 
         Matcher matcher = pattern.matcher(input);
