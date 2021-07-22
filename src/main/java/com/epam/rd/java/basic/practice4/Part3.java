@@ -97,7 +97,7 @@ public class Part3 {
     public static String getFileInput(String fileName) {
         StringBuilder sb = new StringBuilder();
 
-        try (Scanner scanner = new Scanner(new File(fileName), "utf-8")) {
+        try (Scanner scanner = new Scanner(new File(fileName), "cp1251")) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine() + System.lineSeparator();
                 sb.append(line);
