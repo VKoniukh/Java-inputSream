@@ -20,16 +20,16 @@ public class Part3 {
         while (sc.hasNextLine()) {
                 switch (sc.nextLine()) {
                     case "String":
-                        System.out.println(getStringValues());
+                        System.out.println(getStringValues() + " ");
                         break;
                     case "char":
-                        System.out.println(getCharValues());
+                        System.out.println(getCharValues() + " ");
                         break;
                     case "int":
-                        System.out.println(getIntValues());
+                        System.out.println(getIntValues() + " ");
                         break;
                     case "double":
-                        System.out.println(getDoubleValues());
+                        System.out.println(getDoubleValues() + " ");
                         break;
                     case "stop":
                         return;
@@ -57,7 +57,7 @@ public class Part3 {
 
     public static String getCharValues() {
         StringBuilder sb = new StringBuilder();
-        String regex = "([\\p{L}]+)[^\\p{L}]+";
+        String regex = "(?<=\\s|^).(?=\\s|$)";
         Pattern pattern = Pattern.compile(regex);
 
         Matcher matcher = pattern.matcher(input);
