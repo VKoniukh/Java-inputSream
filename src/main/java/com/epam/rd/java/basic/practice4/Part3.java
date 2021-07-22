@@ -22,21 +22,21 @@ public class Part3 {
                 switch (sc.nextLine()) {
                     case "String":
                         System.out.println(getStringValues() + " ");
-                        break;
+                        continue;
                     case "char":
                         System.out.println(getCharValues() + " ");
-                        break;
+                        continue;
                     case "int":
                         System.out.println(getIntValues() + " ");
-                        break;
+                        continue;
                     case "double":
                         System.out.println(getDoubleValues() + " ");
-                        break;
+                        continue;
                     case "stop":
                         return;
                     default:
                         System.out.println("incorrect input");
-                        break;
+                        continue;
                 }
         }
     }
